@@ -1,10 +1,10 @@
 package com.Taller1.Posteo.Repository;
 
-import com.Taller1.Posteo.Model.Posteo;
+import com.Taller1.Posteo.Model.Autor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IposteoRepository  extends JpaRepository<Posteo, Long> {
+public interface AutorRepository extends JpaRepository<Autor, Long> {
 
 }

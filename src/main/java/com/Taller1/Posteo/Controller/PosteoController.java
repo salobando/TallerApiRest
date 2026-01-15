@@ -35,6 +35,12 @@ public class PosteoController {
         return ResponseEntity.ok("Guardado con exito");
     }
 
+    @PostMapping("/crear/{autorId}")
+    public Posteo crearPosteo(@PathVariable Long autorId, @RequestBody Posteo posteo) {
+        return posteoService.crearPosteo(autorId, posteo);
+    }
+
+
     @DeleteMapping ("/borrar/{id}")
     public ResponseEntity<String> deletePosteo(@PathVariable Long id) {
         posteoService.eliminarPosteo(id);
@@ -42,8 +48,8 @@ public class PosteoController {
     }
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarPersonas(@PathVariable Long id, @RequestBody Posteo posteoActualizada){
+    public ResponseEntity<String> editarPosteo(@PathVariable Long id, @RequestBody Posteo posteoActualizada){
         posteoService.editarPosteo(id, posteoActualizada);
-        return  ResponseEntity.ok("Persona actualizada con exito");
+        return  ResponseEntity.ok("Posteo actualizada con exito");
     }
 }

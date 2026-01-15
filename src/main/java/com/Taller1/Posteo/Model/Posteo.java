@@ -1,7 +1,9 @@
 package com.Taller1.Posteo.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +22,12 @@ public class Posteo {
     @Column(nullable = false)
     private LocalDate fechaCreacion;
 
+    // MANY TO ONE
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "author_id")
+    @JsonBackReference
+    private Autor author;
+
     // ONE TO MANY
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -33,6 +41,22 @@ public class Posteo {
         this.titulo = titulo;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Autor getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Autor author) {
+        this.author = author;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Long getId_posteo() {
